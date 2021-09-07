@@ -1,5 +1,7 @@
 package guru.springframework.spring5webapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,8 +19,8 @@ public class Publisher {
     private String state;
     private String zip;
 
-    @OneToMany
-    @JoinColumn(name = "publisher_id")
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<Book> books = new HashSet<>();
 
     public Publisher() {

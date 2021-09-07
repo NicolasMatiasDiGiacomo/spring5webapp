@@ -2,6 +2,7 @@ package guru.springframework.spring5webapp.controllers;
 
 import guru.springframework.spring5webapp.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -25,5 +26,17 @@ public class DashboardController {
         System.out.println("Token: " + jwtService.createToken(user.getUsername(), roleList));
 
         return "/home/dashboard";
+    }
+
+    @GetMapping("/json")
+    public ResponseEntity<String> getJson() {
+
+        return ResponseEntity.ok("{  \n" +
+                "    \"employee\": {  \n" +
+                "        \"name\":       \"sonoo\",   \n" +
+                "        \"salary\":      56000,   \n" +
+                "        \"married\":    true  \n" +
+                "    }  \n" +
+                "}  ");
     }
 }

@@ -1,5 +1,7 @@
 package guru.springframework.spring5webapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +20,8 @@ public class Book {
     private Set<Author> authors = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    @JsonBackReference
     private Publisher publisher;
 
     public Book() {
